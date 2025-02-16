@@ -73,7 +73,7 @@ def pytest_runtest_makereport(item, call):
   outcome = yield
   report = outcome.get_result()
 
-  if report.outcome != "call" and report.outcome != "failed":
+  if report.when != "call" or report.outcome != "failed":
     return
 
   for arg in item.funcargs:
