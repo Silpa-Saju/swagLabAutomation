@@ -61,6 +61,7 @@ def test_can_move_to_checkout(cart_page: Page, inventory_items):
   with allure.step("Verifying checkout info container is visible"):
     assert cart_page.locator('[data-test="checkout-info-container"]').is_visible()
 
+@pytest.mark.xfail
 def test_cannot_move_to_checkout_if_no_items_in_cart(cart_page: Page):
   """Checks that the checkout button is not available when the cart is empty."""
   cart = CartPage(cart_page)

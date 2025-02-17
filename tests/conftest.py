@@ -72,8 +72,8 @@ def context_with_auth(browser: Browser, env):
 def pytest_runtest_makereport(item, call):
   outcome = yield
   report = outcome.get_result()
-
-  if report.when != "call" or report.outcome != "failed":
+  failing_status = "skipped" if hasattr(report, "wasxfail") else "failed"
+  if report.when != "call" or report.outcome != failing_status:
     return
 
   for arg in item.funcargs:
